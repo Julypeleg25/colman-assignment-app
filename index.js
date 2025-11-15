@@ -1,5 +1,5 @@
 import express from "express";
-import connectToDatabase from "./mongoose/mongooseConnection.js";
+import connectToDatabase from "./mongo/dbConnection.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
