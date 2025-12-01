@@ -1,7 +1,7 @@
 {
   "name": "firstassignment",
   "version": "1.0.0",
-  "description": "first assignment for internet apps cource",
+  "description": "first assignment for internet apps course",
   "main": "index.js",
   "type": "module",
   "scripts": {
