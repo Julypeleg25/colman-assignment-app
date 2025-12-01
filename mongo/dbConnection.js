@@ -3,9 +3,11 @@ import mongoose from "mongoose";
 const connectToDatabase = async () => {
   try {
     const mongoDBUrl = process.env.MONGODB_URL;
+
     if (!mongoDBUrl) {
       throw new Error("MongoDB connection string is not defined");
     }
+    
     const db = mongoose.connection;
     db.on("error", (error) =>
       console.error("MongoDB connection error:" + error)
