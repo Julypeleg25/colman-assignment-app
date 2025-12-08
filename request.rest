@@ -1,4 +1,13 @@
 ###
+POST http://localhost:3000/comments
+Content-Type: application/json
+
+{
+  "postId": "abcdefabcdefabcdefabcdef",
+  "content": "This is an additional first comment",
+  "sender": "July"
+}
+###
 
 POST http://localhost:3000/comments
 Content-Type: application/json
@@ -12,6 +21,10 @@ Content-Type: application/json
 ###
 
 GET http://localhost:3000/comments
+
+###
+
+GET http://localhost:3000/comments/post/1234567890abcdef12345678
 
 ###
 

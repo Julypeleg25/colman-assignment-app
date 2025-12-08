@@ -38,6 +38,7 @@ const createComment = async (req, res) => {
     const { postId, content, sender } = req.body;
     const newComment = new commentsModel({ postId, content, sender });
     const savedComment = await newComment.save();
+
     res.status(201).json(savedComment);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
@@ -54,11 +55,10 @@ const updateComment = async (req, res) => {
       { new: true }
     );
 
-    if (!updatedComment) {
+    if (!updatedComment)
       return res.status(404).json({
         message: `No comment with id '${commentId}' was found to update`,
       });
-    }
 
     res.status(200).json(updatedComment);
   } catch (error) {
@@ -71,13 +71,29 @@ const deleteComment = async (req, res) => {
     const commentId = req.params.id;
     const deletedComment = await commentsModel.findByIdAndDelete(commentId);
 
-    if (!deletedComment) {
+    if (!deletedComment)
       return res.status(404).json({
         message: `No comment with id '${commentId}' was found to delete`,
       });
+
+    res.status(201).json({ message: "Comment deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
+const getAllCommentsByPostId = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+    const comments = await commentsModel.find({ postId });
+
+    if (!comments || comments.length === 0) {
+      return res.status(404).json({
+        message: `No comments found for post with id '${postId}'`,
+      });
     }
 
-    res.status(200).json({ message: "Comment deleted successfully" });
+    res.status(200).json(comments);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }
@@ -89,4 +105,5 @@ export {
   createComment,
   updateComment,
   deleteComment,
+  getAllCommentsByPostId
 };

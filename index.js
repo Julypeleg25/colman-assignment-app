@@ -13,10 +13,6 @@ await connectToDatabase().catch((error) => {
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.get("/", (_req, res) => {
-  res.send("App initialized and running!");
-});
-
 app.use("/comments", commentsRoute);
 
 app.listen(PORT, () => {
