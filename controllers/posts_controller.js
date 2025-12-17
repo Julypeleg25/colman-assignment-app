@@ -18,12 +18,6 @@ const getPostById = async (req, res) => {
 };
 
 const getAllPosts = async (req, res) => {
-  const sender = req.query.sender;
-
-  if (sender){
-    return getAllPostsBySenderId(req, res);
-  }
-
   try {
     const posts = await postsModel.find();
     if (!posts) {
