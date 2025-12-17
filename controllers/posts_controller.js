@@ -35,8 +35,8 @@ const getAllPosts = async (req, res) => {
 
 const createPost = async (req, res) => {
   try {
-    const { postId, content, sender, title } = req.body;
-    const newPost = new postsModel({ postId, content, sender, title });
+    const {  content, sender, title } = req.body;
+    const newPost = new postsModel({ content, sender, title });
     const savedPost = await newPost.save();
 
     res.status(201).json(savedPost);
@@ -87,12 +87,12 @@ const deletePost = async (req, res) => {
 
 const getAllPostsBySenderId = async (req, res) => {
   try {
-    const senderId = req.params.sender;
-    const posts = await postsModel.find({ senderId });
+    const sender = req.params.sender;
+    const posts = await postsModel.find({ sender});
 
     if (!posts || posts.length === 0) {
       return res.status(404).json({
-        message: `No posts found for sender with id '${senderId}'`,
+        message: `No posts found for sender with id '${sender}'`,
       });
     }
 

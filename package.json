@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "npm run test",
-    "dev": "nodemon --env-file=.env index.js",
+    "dev": "nodemon --env-file=.env index.js --watch ./",
     "start": "node --env-file=.env index.js"
   },
   "author": "",
