@@ -76,5 +76,5 @@ DELETE http://localhost:3000/posts/69431d0c9927b95cd83363e5
 
 ###
 
-GET http://localhost:3000/posts/postBySender/YamMicka
+GET http://localhost:3000/posts/?sender=YamMicka
 ###
