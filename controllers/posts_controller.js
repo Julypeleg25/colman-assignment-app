@@ -18,9 +18,14 @@ const getPostById = async (req, res) => {
 };
 
 const getAllPosts = async (req, res) => {
+  const sender = req.query.sender;
+
+  if (sender){
+    return getAllPostsBySenderId(req, res);
+  }
+
   try {
     const posts = await postsModel.find();
-
     if (!posts) {
       return res
         .status(404)
@@ -48,13 +53,21 @@ const createPost = async (req, res) => {
 const updatePost = async (req, res) => {
   try {
     const postId = req.params.id;
-    const updatedData = req.body;
-    if(Object.hasOwn(updatedData, 'sender')) {
-      return res.status(400).json({ message: "Updating 'sender' field is not allowed" });
+    const {content, title} = req.body;
+
+    const updateFields = {};
+    if (content !== undefined && content !== null) updateFields.content = content;
+    if (title !== undefined && title !== null) updateFields.title = title;
+
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).json({
+        message: "At least one of 'content' or 'title' must be provided to update.",
+      });
     }
+
     const updatedPost = await postsModel.findByIdAndUpdate(
       postId,
-      updatedData,
+      { content, title },
       { new: true }
     );
 
@@ -87,8 +100,8 @@ const deletePost = async (req, res) => {
 
 const getAllPostsBySenderId = async (req, res) => {
   try {
-    const sender = req.params.sender;
-    const posts = await postsModel.find({ sender});
+    const sender = req.query.sender;
+    const posts = await postsModel.find({ sender });
 
     if (!posts || posts.length === 0) {
       return res.status(404).json({
