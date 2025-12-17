@@ -1,0 +1,80 @@
+###
+POST http://localhost:3000/comments
+Content-Type: application/json
+
+{
+  "postId": "abcdefabcdefabcdefabcdef",
+  "content": "This is an additional first comment",
+  "sender": "July"
+}
+###
+
+POST http://localhost:3000/comments
+Content-Type: application/json
+
+{
+  "postId": "1234567890abcdef12345678",
+  "content": "Hellooo This is a comment",
+  "sender": "YamMicka"
+}
+
+###
+
+GET http://localhost:3000/comments
+
+###
+
+GET http://localhost:3000/comments/post/1234567890abcdef12345678
+
+###
+
+GET http://localhost:3000/comments/6734d959d9d641367d22f61f
+
+###
+
+PUT http://localhost:3000/comments/6734d959d9d641367d22f61f
+Content-Type: application/json
+
+{
+  "content": "Updated comment content",
+  "sender": "JulyPeleg25"
+}
+
+###
+
+DELETE http://localhost:3000/comments/14234123456789abcdef123456
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "content": "This is a new post",
+  "sender": "July",
+  "title": "First Post"
+}
+###
+
+GET http://localhost:3000/posts
+
+###
+
+GET http://localhost:3000/posts/69431d0c9927b95cd83363e5
+
+###
+
+PUT http://localhost:3000/posts/69431d0c9927b95cd83363e5
+Content-Type: application/json
+
+{
+  "content": "yam's postttt",
+  "title": "changed"
+}
+
+###
+
+DELETE http://localhost:3000/posts/69431d0c9927b95cd83363e5
+
+###
+
+GET http://localhost:3000/posts/?sender=YamMicka
+###

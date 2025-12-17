@@ -1,0 +1,22 @@
+{
+  "name": "firstassignment",
+  "version": "1.0.0",
+  "description": "first assignment for internet apps course",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "npm run test",
+    "dev": "nodemon --env-file=.env index.js --watch ./",
+    "start": "node --env-file=.env index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.19.4",
+    "nodemon": "^3.1.11"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
